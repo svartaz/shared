@@ -13,11 +13,11 @@ export class XorShift {
 
   // XorShift
   next() {
-    const e = this.ns[0] ^ (this.ns[0] << 11);
-    this.ns[0] = this.ns[1];
-    this.ns[1] = this.ns[2];
-    this.ns[2] = this.ns[3];
-    this.ns[3] = this.ns[3] ^ (this.ns[3] >>> 19) ^ (e ^ (e >>> 8));
+    const e = this.ns[0]! ^ (this.ns[0]! << 11);
+    this.ns[0] = this.ns[1]!;
+    this.ns[1] = this.ns[2]!;
+    this.ns[2] = this.ns[3]!;
+    this.ns[3] = this.ns[3]! ^ (this.ns[3]! >>> 19) ^ (e ^ (e >>> 8));
     return this.ns[3];
   }
 

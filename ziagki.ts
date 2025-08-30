@@ -11,7 +11,7 @@ export type Piece = {
 
 export const codeToTakens = (code: string): Kind[] =>
   [...code.matchAll(/([plnsgbrk])(\d*)/g)].flatMap(([_full, kind, number]) =>
-    Array(number ? parseInt(number) : 1).fill(kind.toUpperCase())
+    Array(number ? parseInt(number) : 1).fill(kind?.toUpperCase())
   );
 
 const codeToBoard = (
@@ -21,7 +21,7 @@ const codeToBoard = (
 
   const main = chunks(
     [
-      ...codeMain
+      ...codeMain!
         .replace(/\d+/g, (it) => " ".repeat(parseInt(it)))
         .matchAll(/ |\!?[plnsgbrk]/gi),
     ].map(([expr]) =>

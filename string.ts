@@ -21,7 +21,7 @@ export const capitalise = (it: string, locale: string | null) =>
     ? it.slice(0, 1).toLocaleUpperCase(locale) + it.slice(1)
     : it.slice(0, 1).toUpperCase() + it.slice(1);
 
-export const styles: { [key: string]: string[][] } = {
+export const styles: { [key: string]: [string, string][] } = {
   serifBold: [
     ["ABCDEFGHIJKLMNOPQRSTUVWXYZ", "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙"],
     ["abcdefghijklmnopqrstuvwxyz", "𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳"],
@@ -94,9 +94,9 @@ export const styles: { [key: string]: string[][] } = {
 };
 
 export const applyStyle = (it: string, style: string): string => {
-  for (const [from, to] of styles[style] ?? [])
+  for (const [from, to] of styles[style]!)
     for (let i = 0; i < from.length; i++) {
-      it = it.replace(new RegExp([...from][i], "g"), [...to][i]);
+      it = it.replace(new RegExp(from[i]!, "g"), to[i]!);
     }
 
   return it;
